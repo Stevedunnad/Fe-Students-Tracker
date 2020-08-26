@@ -17,10 +17,31 @@ export default class StudentList extends Component {
   }
   
   render() {
+    const { students, isloading } = this.state
+
     return (
-      <div>
-        
-      </div>
+      <main>
+        <ul>
+          {students.map((student) => {
+            return (
+            <li key={student._id}>
+                <h3>Name: {student.name}</h3>
+                <p>Cohort: {student.startingCohort}</p>
+                <p>Block: {student.currentBlock}</p>
+            </li>
+            )
+          })
+          }
+        </ul>
+      </main>
     )
   }
 }
+
+
+// {
+//   _id: "5f4667cde90cc000175a176c",
+//     name: "Helen",
+//       startingCohort: 0,
+//         currentBlock: "fun"
+// },
