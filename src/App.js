@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import StudentList from "./components/StudentList";
 import Blocks from "./components/Blocks";
 import Title from "./components/Title";
+import GraduateList from './components/GraduateList';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
       <Router>
         <Home path="/" />
         <StudentList path="/students" />
-        <StudentList path="/students/:sort_by" />
+        <GraduateList path="/graduates/" />
         <Blocks path="/blocks" />
       </Router>
     </div>

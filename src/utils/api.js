@@ -20,12 +20,12 @@ export const getAllBlocks = () => {
     console.log(error)
   })
 }
-// export const getAllGraduates = () => {
-//   return axios.get('https://nc-student-tracker.herokuapp.com/api/students?sort_by=graduated')
-//   .then((res) => {
-//     return res.data.graduates
-//   })
-//   .catch((error) => {
-//     console.log(error)
-//   })
-// }
+export const getAllGraduates = () => {
+  return axios.get('https://nc-student-tracker.herokuapp.com/api/students?graduated=true')
+  .then((res) => {
+    return res.data.students
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+}

@@ -12,7 +12,7 @@ export default class StudentList extends Component {
       this.setState({ students, isLoading: false });
     });
   }
-  componentDidUpdate(prevProps, PervState) {
+  componentDidUpdate(prevProps, PrevState) {
     if(prevProps.sort_by !== this.props.sort_by) {
       api.getAllStudents(this.props.sort_by)
       .then((students) => {
@@ -31,12 +31,6 @@ export default class StudentList extends Component {
   render() {
     const { students, isloading } = this.state;
     if (isloading) return <h5>Loading ...</h5>;
-     console.log(students.length)
-
-    let  isGrad = students.filter((student) => {
-       return student.currentBlock === "grad"
-     })
-     console.log(isGrad);
     return (
       <main>
         <table>
