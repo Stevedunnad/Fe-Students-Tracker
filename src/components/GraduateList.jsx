@@ -7,8 +7,8 @@ export default class GraduateList extends Component {
   };
 
   componentDidMount() {
-    api.getAllStudents().then((students) => {
-      this.setState({ students, isLoading: false });
+    api.getAllGraduates().then((graduates) => {
+      this.setState({ graduates, isLoading: false });
     });
   }
 
