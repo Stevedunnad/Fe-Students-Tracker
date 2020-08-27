@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background: #3a506b;
+  width: 100%;
+  height: 70px;
+  font-size: 1.2rem;
+  margin-bottom: 4rem;
+}
+
+.link-list {
+  justify-content: center;
+  align-items: center;
+}
+.link-item {
+  margin: 0 1rem;
+  text-transform: none;
+  text-decoration: none;
+  color: #ffffff;
+  opacity: .8;
+  font-weight: bold;
+}
+.link-item:hover {
+  opacity: 1;
+}

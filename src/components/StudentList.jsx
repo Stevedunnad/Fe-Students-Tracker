@@ -1,47 +1,63 @@
-import React, { Component } from 'react'
-import * as api from './../utils/api'
+import React, { Component } from "react";
+import * as api from "../utils/api";
 
 export default class StudentList extends Component {
-
   state = {
     students: [],
-    isLoading: true
-  }
+    isLoading: true,
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     api.getAllStudents().then((students) => {
-      this.setState({students, isLoading: false})
-    })
-    
-    
+      this.setState({ students, isLoading: false });
+    });
   }
-  
-  render() {
-    const { students, isloading } = this.state
+  componentDidUpdate(prevProps, PervState) {
+    if(prevProps.sort_by !== this.props.sort_by) {
+      api.getAllStudents(this.props.sort_by)
+      .then((students) => {
+        this.setState({students, isloading: false})
+      })
+    }
+  }
 
+  getStudents = () => {
+    api.getAllStudents(this.props.sort_by).then((students) => {
+      this.setState({students, isloading: false})
+    })
+  }
+
+
+  render() {
+    const { students, isloading } = this.state;
+    if (isloading) return <h5>Loading ...</h5>;
+     console.log(students.length)
+
+    let  isGrad = students.filter((student) => {
+       return student.currentBlock === "grad"
+     })
+     console.log(isGrad);
     return (
       <main>
-        <ul>
-          {students.map((student) => {
-            return (
-            <li key={student._id}>
-                <h3>Name: {student.name}</h3>
-                <p>Cohort: {student.startingCohort}</p>
-                <p>Block: {student.currentBlock}</p>
-            </li>
-            )
-          })
-          }
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Starting Cohort</th>
+              <th>Current Block</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => (
+              <tr key={student._id}>
+                <td>{student.name}</td>
+                <td>{student.startingCohort}</td>
+                <td>{student.currentBlock}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </main>
-    )
+    );
   }
 }
-
-
-// {
-//   _id: "5f4667cde90cc000175a176c",
-//     name: "Helen",
-//       startingCohort: 0,
-//         currentBlock: "fun"
-// },
